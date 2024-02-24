@@ -210,11 +210,9 @@ connection.connect(err => {
   console.log('Connexion à la base de données réussie');
 });
 
-// Route pour insérer des données dans la base de données
 app.post('/api/insertData', (req, res) => {
   const { username, password, remember } = req.body;
 
-  // Exécution de la requête SQL pour insérer les données
   const sql = `INSERT INTO last (username, password, remember) VALUES (?, ?, ?)`;
   connection.query(sql, [username, password, remember], (err, result) => {
     if (err) {
@@ -227,7 +225,6 @@ app.post('/api/insertData', (req, res) => {
   });
 });
 
-// Démarrage du serveur
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Serveur en cours d'exécution sur le port ${port}`);
